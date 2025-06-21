@@ -9,6 +9,7 @@ dotenv.config({
 const EnvSchema = z.object({
   PORT: z.coerce.number(),
   URI: z.string(),
+  NODE_ENV: z.enum(["development", "production"]).default("development"),
 });
 
 try {
