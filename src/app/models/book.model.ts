@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
-import IBook from "../interfaces/book.interface";
+import IBook, { IBookModel } from "../interfaces/book.interface";
 import { BookGenres } from "../constants/book.constant";
 
-const bookSchema = new Schema<IBook>(
+const bookSchema = new Schema<IBook, IBookModel>(
   {
     title: {
       type: String,
@@ -23,10 +23,12 @@ const bookSchema = new Schema<IBook>(
     isbn: {
       type: String,
       required: true,
+      unique: true,
     },
     copies: {
       type: Number,
       required: true,
+      min: 0,
     },
     available: {
       type: Boolean,
@@ -35,8 +37,17 @@ const bookSchema = new Schema<IBook>(
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 
-const Book = model<IBook>("Book", bookSchema);
+bookSchema.statics.isExists = async function (id: string) {
+  return await this.findById(id);
+};
+
+bookSchema.statics.markAsUnavailable = async function (id: string) {
+  await this.findOneAndUpdate({ _id: id }, { available: false });
+};
+
+const Book = model<IBook, IBookModel>("Book", bookSchema);
 export default Book;
