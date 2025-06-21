@@ -4,6 +4,7 @@ import catchAsync from "../utils/catchAsync";
 import sendResponse from "../utils/sendResponse";
 
 const createBook = catchAsync(async (req, res) => {
+  console.log("creating a book...");
   const data = await BookServices.createBookIntoDB(req.body);
 
   sendResponse(res, {

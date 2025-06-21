@@ -14,33 +14,8 @@
 2. Can borrow books.
 3. Can see the statictics about borrowed books.
 
-## API
-### Book
-- GET `/api/books` -> get all
-- GET `/api/books/:bookId` -> get book using id
-- POST `/api/books` -> create book
-  - payload
-  ```json
-  {
-    "title": "The Theory of Everything",
-    "author": "Stephen Hawking",
-    "genre": "SCIENCE",
-    "isbn": "9780553380163",
-    "description": "An overview of cosmology and black holes.",
-    "copies": 5,
-    "available": true
-  }
-  ```
-- PUT `/api/books/:bookId` -> update book
-  - payload
-  ```json
-  {
-      "title": "The Theory of Everything",
-      "author": "Stephen Hawking",
-      "genre": "SCIENCE",
-      "isbn": "9780553380163",
-      "description": "An overview of cosmology and black holes.",
-      "copies": 5,
-      "available": true
-    }
-  ```
+## API documentation
+- visit the below port in development `http://localhost:8000/api-docs`
+```
+http://localhost:PORT/api-docs
+```

@@ -9,7 +9,7 @@ import AppError from "../errors/AppError";
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   // setting default values
   let statusCode = 500;
-  let message = "Something went wrong!";
+  let message = "Internal server error.";
 
   if (err instanceof ZodError) {
     const similifiedError = handleZodError(err);

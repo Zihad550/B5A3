@@ -8,7 +8,7 @@ const createBookIntoDB = async (payload: IBook) => {
     isbn: payload.isbn,
   });
   if (isbnConflict?.length)
-    throw new AppError(status.CONFLICT, "Book with same isbn exists");
+    throw new AppError(status.CONFLICT, "Conflict, ISBN already exists.");
   return await Book.create(payload);
 };
 
