@@ -28,3 +28,4 @@ cd B5A3
 ```
 http://localhost:PORT/api-docs
 ```
+- And to use postman please import the `library management a3.postman_collection.json` file on postman.
