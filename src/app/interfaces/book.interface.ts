@@ -1,6 +1,7 @@
 import { Model, Types } from "mongoose";
 
 export default interface IBook {
+  _id: Types.ObjectId;
   title: string;
   author: string;
   genre: TBookGenre;

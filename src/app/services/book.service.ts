@@ -2,6 +2,8 @@ import status from "http-status";
 import AppError from "../errors/AppError";
 import IBook from "../interfaces/book.interface";
 import Book from "../models/book.model";
+import Borrow from "../models/borrow.model";
+import useObjectId from "../utils/useObjectId";
 
 const createBookIntoDB = async (payload: IBook) => {
   const isbnConflict = await Book.find({
@@ -42,6 +44,7 @@ const deleteBookByIdFromDB = async (id: string) => {
   if (!(await Book.isExists(id)))
     throw new AppError(status.NOT_FOUND, "Book not found");
   await Book.deleteOne({ _id: id });
+  await Borrow.deleteMany({ book: useObjectId(id) });
   return null;
 };
 
